@@ -20,3 +20,4 @@ def predict_digit(img):
     prediction = model.predict(img)
 
     return np.argmax(prediction)
+
