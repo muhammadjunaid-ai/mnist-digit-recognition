@@ -21,12 +21,25 @@ canvas = st_canvas(
 
 if canvas.image_data is not None:
 
-    img = Image.fromarray(canvas.image_data.astype('uint8')).convert('L')
+    # convert canvas to image
+    img = Image.fromarray(canvas.image_data.astype('uint8'))
+
+    # convert to grayscale
+    img = img.convert("L")
+
+    # resize to MNIST size
     img = img.resize((28,28))
 
+    # convert to numpy
     img = np.array(img)
+
+    # invert colors
     img = 255 - img
+
+    # normalize
     img = img / 255.0
+
+    # reshape for CNN
     img = img.reshape(1,28,28,1)
 
     if st.button("Predict"):
